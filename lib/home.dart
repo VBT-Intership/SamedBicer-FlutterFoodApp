@@ -38,38 +38,89 @@ class _HomeScreenState extends State<HomeScreen> {
   Container buildBodyContainer() {
     return Container(
       padding: const EdgeInsets.all(20.0),
-      child: buildTitleColumn(),
+      child: Column(
+        children: [
+          titleRow(),
+          SizedBox(height: 16.0),
+          Container(
+            height: MediaQuery.of(context).size.width * 0.46,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: AssetImage(
+                              "/Users/samedbicer/Development/Flutter/EatingApp/assets/images/donut2.jpeg"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      margin: EdgeInsets.only(
+                        right: 10.0,
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.38,
+                      height: MediaQuery.of(context).size.width * 0.38,
+                    ),
+                    Spacer(),
+                    RichText(
+                      text: TextSpan(
+                        text: "Sweets - ",
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15.0,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: "12 Item",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Column buildTitleColumn() {
-    return Column(
+  Row titleRow() {
+    return Row(
       children: [
-        Row(
-          children: [
-            Expanded(
-              flex: 6,
-              child: Text(
-                'What do you want to eat today?',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  height: 1.4,
-                ),
-              ),
+        Expanded(
+          flex: 6,
+          child: Text(
+            'What do you want to eat today?',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              height: 1.4,
             ),
-            Spacer(
-              flex: 3,
-            ),
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                icon: Icon(Icons.search),
-                iconSize: 30.0,
-                onPressed: () {},
-              ),
-            )
-          ],
+          ),
+        ),
+        Spacer(
+          flex: 3,
+        ),
+        Expanded(
+          flex: 1,
+          child: IconButton(
+            icon: Icon(Icons.search),
+            iconSize: 30.0,
+            onPressed: () {},
+          ),
         )
       ],
     );
